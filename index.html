@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matemàtiques 2n ESO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 60px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+        }
+
+        .description {
+            font-size: 1.1em;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            animation: slideUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .topic-card.available:hover {
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+        }
+
+        .topic-card.coming-soon {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .topic-card.coming-soon:hover {
+            transform: translateY(-5px);
+        }
+
+        .topic-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .topic-title {
+            font-size: 1.8em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .topic-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .topic-status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .status-available {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .status-coming {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .topics-container {
+            animation: fadeIn 1.2s ease-in;
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .info-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeIn 1s ease-in;
+        }
+
+        .info-section h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+        }
+
+        .info-section p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            
+            .subtitle {
+                font-size: 1.2em;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📐 Matemàtiques 2n ESO</h1>
+            <p class="subtitle">Aprèn matemàtiques de forma interactiva</p>
+            <p class="description">Plataforma educativa amb explicacions clares, exemples pràctics i exercicis interactius</p>
+        </header>
+
+        <div class="info-section">
+            <h2>👋 Benvingut/da!</h2>
+            <p>Aquesta pàgina conté tots els temes de matemàtiques de 2n d'ESO. Cada tema inclou teoria, exemples resolts i calculadores interactives per practicar. Clica sobre qualsevol tema disponible per començar a aprendre!</p>
+        </div>
+
+        <div class="topics-container">
+            <div class="topics-grid">
+                
+                <a href="algebra.html" class="topic-card available">
+                    <span class="topic-icon">🔤</span>
+                    <h3 class="topic-title">Expressions Algebraiques</h3>
+                    <p class="topic-description">
+                        Aprèn sobre monomis, polinomis, operacions algebraiques i identitats notables de forma interactiva.
+                    </p>
+                    <span class="topic-status status-available">✓ Disponible</span>
+                </a>
+
+                <div class="topic-card coming-soon">
+                    <span class="topic-icon">🔢</span>
+                    <h3 class="topic-title">Equacions</h3>
+                    <p class="topic-description">
+                        Igualtat algebraiques, elements d'una equació, equacions de primer i segon grau, i resolució de problemes.
+                    </p>
+                    <span class="topic-status status-coming">⏳ Properament</span>
+                </div>
+
+                <div class="topic-card coming-soon">
+                    <span class="topic-icon">📐</span>
+                    <h3 class="topic-title">Figures Planes. Pitàgores</h3>
+                    <p class="topic-description">
+                        Estudi de les figures geomètriques planes, àrees, perímetres i el teorema de Pitàgores amb aplicacions pràctiques.
+                    </p>
+                    <span class="topic-status status-coming">⏳ Properament</span>
+                </div>
+
+                <div class="topic-card coming-soon">
+                    <span class="topic-icon">📊</span>
+                    <h3 class="topic-title">Estadística i Probabilitat</h3>
+                    <p class="topic-description">
+                        Anàlisi de dades, mesures de tendència central, gràfics estadístics i conceptes bàsics de probabilitat.
+                    </p>
+                    <span class="topic-status status-coming">⏳ Properament</span>
+                </div>
+
+            </div>
+        </div>
+
+        <footer>
+            <p>© 2024 Matemàtiques 2n ESO | Projecte educatiu interactiu</p>
+            <p style="margin-top: 10px; font-size: 0.9em;">Creat amb passion per l'ensenyament de les matemàtiques</p>
+        </footer>
+    </div>
+
+    <script>
+        // Prevenir clics en tarjetes "coming soon"
+        document.querySelectorAll('.topic-card.coming-soon').forEach(card => {
+            card.addEventListener('click', (e) => {
+                e.preventDefault();
+            });
+        });
+
+        // Afegir animació escalonada a les tarjetes
+        const cards = document.querySelectorAll('.topic-card');
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
