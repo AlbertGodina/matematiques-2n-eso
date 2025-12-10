@@ -31,7 +31,7 @@ Els exercicis generen els valors de manera aleatòria en el moment, de manera qu
 
 ## 🤝 Contribució
 
-Aquest projecte és de codi obert. Si vols millorar el contingut, reportar un error o proposar un nou exercici, ets benvingut a crear un 'Issue' o un 'Pull Request' al repositori.
+Aquest projecte és de codi obert. Si vols millorar el contingut, reportar un error o proposar nous exercicis, ets benvingut/da a crear un 'Issue' o un 'Pull Request' al repositori.
 
 ## 📜 Llicència
 
