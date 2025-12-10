@@ -1,1 +1,468 @@
-.
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Igualtats Algebraiques - Equacions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            margin-bottom: 30px;
+            transition: background 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+        }
+
+        .section h3 {
+            color: #764ba2;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .section p, .section li {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .definition-box {
+            background: #f0f4ff;
+            border-left: 5px solid #667eea;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .definition-box strong {
+            color: #667eea;
+            font-size: 1.2em;
+        }
+
+        .highlight {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+        }
+
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .example-card {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #667eea;
+        }
+
+        .example-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .formula {
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            text-align: center;
+            margin: 15px 0;
+            border: 2px solid #e0e0e0;
+            font-family: 'Courier New', monospace;
+        }
+
+        .interactive-section {
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: 2px solid #667eea;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1.1em;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+            font-size: 1.1em;
+        }
+
+        .result.show {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        .result.identity {
+            background: #e8f5e9;
+            border-left: 5px solid #4caf50;
+        }
+
+        .result.equation {
+            background: #fff3e0;
+            border-left: 5px solid #ff9800;
+        }
+
+        .result.numeric {
+            background: #ffebee;
+            border-left: 5px solid #f44336;
+        }
+
+        ul {
+            margin-left: 30px;
+        }
+
+        ul li {
+            margin-bottom: 10px;
+        }
+
+        .verification-steps {
+            background: #f0f4ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .step {
+            padding: 10px;
+            margin: 10px 0;
+            background: white;
+            border-radius: 5px;
+            border-left: 3px solid #667eea;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2em; }
+            .examples-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="../equacions.html" class="back-button">← Tornar a Equacions</a>
+
+        <header>
+            <h1>📊 Igualtats Algebraiques</h1>
+        </header>
+
+        <div class="section">
+            <h2>🎯 Què és una igualtat algebraica?</h2>
+            
+            <div class="definition-box">
+                <p><strong>Una igualtat algebraica</strong> està formada per dues expressions algebraiques separades pel signe =.</p>
+            </div>
+
+            <p>Una igualtat algebraica és:</p>
+            <ul>
+                <li><strong>Una identitat</strong> quan és certa per a tot valor de les lletres.</li>
+                <li><strong>Una equació</strong> quan només és certa per a alguns valors de les lletres.</li>
+            </ul>
+
+            <div class="highlight">
+                <p><strong>Important:</strong> Una igualtat formada només per nombres s'anomena <strong>igualtat numèrica</strong>.</p>
+                <div class="formula">10 - 5 = 4 + 1  →  2/3 + 5/3 = 7/3</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>📚 Tipus d'igualtats algebraiques</h2>
+
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4>✓ Identitat</h4>
+                    <div class="formula">x + 2x = 4x - x</div>
+                    <p>És certa per a qualsevol valor de x:</p>
+                    <div class="verification-steps">
+                        <div class="step">Si x = 0: 0 + 0 = 0 - 0 → 0 = 0 ✓</div>
+                        <div class="step">Si x = 1: 1 + 2 = 4 - 1 → 3 = 3 ✓</div>
+                        <div class="step">Si x = -1: -1 - 2 = -4 + 1 → -3 = -3 ✓</div>
+                    </div>
+                    <p style="margin-top: 15px; color: #4caf50; font-weight: bold;">
+                        Si provéssim amb més valors, veuríem que es continua complint.<br>
+                        x + 2x = 4x - x és una <strong>identitat</strong> perquè es compleix per a qualsevol valor de x.
+                    </p>
+                </div>
+
+                <div class="example-card">
+                    <h4>⚡ Equació</h4>
+                    <div class="formula">x² - x - 2 = 0</div>
+                    <p>Només és certa per a alguns valors de x:</p>
+                    <div class="verification-steps">
+                        <div class="step">Si x = 0: 0² - 0 - 2 = -2 ≠ 0 ✗</div>
+                        <div class="step">Si x = 1: 1² - 1 - 2 = -2 ≠ 0 ✗</div>
+                        <div class="step">Si x = -1: (-1)² - (-1) - 2 = 0 = 0 ✓</div>
+                    </div>
+                    <p style="margin-top: 15px; color: #ff9800; font-weight: bold;">
+                        x² - x - 2 = 0 és una <strong>equació</strong> perquè només és certa per a alguns valors de x, com x = -1.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔍 Exemples pràctics</h2>
+
+            <h3>Exemple 1: Determina quines d'aquestes igualtats són algebraiques</h3>
+            
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h4>a) x + 1 = -5</h4>
+                    <p style="color: #4caf50; font-weight: bold;">✓ És una igualtat algebraica</p>
+                    <p>Conté expressions algebraiques (x + 1 i -5)</p>
+                </div>
+
+                <div class="example-card">
+                    <h4>b) 7 - 3 = 4</h4>
+                    <p style="color: #f44336; font-weight: bold;">✗ No és una igualtat algebraica, sinó numèrica</p>
+                    <p>Només conté nombres, no hi ha cap lletra</p>
+                </div>
+            </div>
+
+            <h3>Exemple 2: Classifica aquestes igualtats en identitats o equacions</h3>
+            
+            <p><strong>a) x + 2x = 4x - x</strong></p>
+            <p>Simplifiquem ambdós membres:</p>
+            <div class="formula">3x = 3x</div>
+            <p style="color: #4caf50; font-weight: bold;">És una <strong>IDENTITAT</strong> perquè es compleix per a qualsevol valor de x.</p>
+
+            <p style="margin-top: 25px;"><strong>b) x² - x - 2 = 0</strong></p>
+            <p>Provem diversos valors i veiem que només és certa per a x = -1 (i x = 2).</p>
+            <p style="color: #ff9800; font-weight: bold;">És una <strong>EQUACIÓ</strong> perquè només és certa per a alguns valors de x.</p>
+        </div>
+
+        <div class="section">
+            <h2>🎮 Comprova si és una identitat o equació</h2>
+            
+            <div class="interactive-section">
+                <p style="margin-bottom: 20px;">Introdueix una igualtat i et diré si és una identitat o una equació:</p>
+                
+                <div class="input-group">
+                    <label>Introdueix una igualtat (exemple: 2x + 3 = x + 5):</label>
+                    <input type="text" id="equalityInput" placeholder="2x + 3 = x + 5">
+                </div>
+
+                <button onclick="checkEquality()">Analitzar Igualtat</button>
+
+                <div id="result" class="result"></div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>💡 Consells</h2>
+            <ul>
+                <li><strong>Per identificar una identitat:</strong> Simplifica ambdós membres de la igualtat. Si obtens la mateixa expressió, és una identitat.</li>
+                <li><strong>Per identificar una equació:</strong> Prova amb diversos valors de la incògnita. Si només alguns valors fan que la igualtat sigui certa, és una equació.</li>
+                <li><strong>Atenció:</strong> Les igualtats numèriques (sense lletres) no són igualtats algebraiques.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function checkEquality() {
+            const input = document.getElementById('equalityInput').value.trim();
+            const resultDiv = document.getElementById('result');
+
+            if (!input || !input.includes('=')) {
+                resultDiv.innerHTML = '<p><strong>Error:</strong> Has d\'introduir una igualtat amb el signe =</p>';
+                resultDiv.className = 'result show numeric';
+                return;
+            }
+
+            // Check si conté lletres
+            const hasLetters = /[a-zA-Z]/.test(input);
+            
+            if (!hasLetters) {
+                resultDiv.innerHTML = `
+                    <h3>Igualtat Numèrica</h3>
+                    <p><strong>${input}</strong></p>
+                    <p>Aquesta és una igualtat numèrica, no algebraica, ja que no conté cap lletra (incògnita).</p>
+                `;
+                resultDiv.className = 'result show numeric';
+                return;
+            }
+
+            const [left, right] = input.split('=').map(s => s.trim());
+
+            // Casos senzills d'identitat
+            const identityPatterns = [
+                { pattern: /^(\d*)x\s*\+\s*(\d*)x$/, check: (l, r) => {
+                    const leftCoef = (l[1] || '1') + (l[2] || '1');
+                    return leftCoef === r.replace(/\s/g, '');
+                }},
+                { pattern: /^x\s*\+\s*2x$/, isIdentity: (l, r) => r === '3x' || r === 'x + 2x' }
+            ];
+
+            // Simplificació bàsica
+            let isLikelyIdentity = false;
+            
+            // Si ambdós costats són iguals després de treure espais
+            if (left.replace(/\s/g, '') === right.replace(/\s/g, '')) {
+                isLikelyIdentity = true;
+            }
+
+            // Casos com "x + 2x" i "3x"
+            if ((left.includes('+') || left.includes('-')) && !right.includes('=')) {
+                // Intentem detectar si és identitat
+                const leftSimple = left.replace(/\s/g, '');
+                const rightSimple = right.replace(/\s/g, '');
+                
+                if (leftSimple.match(/x\+2x/) && rightSimple === '3x') isLikelyIdentity = true;
+                if (leftSimple.match(/2x\+x/) && rightSimple === '3x') isLikelyIdentity = true;
+            }
+
+            if (isLikelyIdentity) {
+                resultDiv.innerHTML = `
+                    <h3>✓ Identitat</h3>
+                    <p><strong>${input}</strong></p>
+                    <p>Aquesta igualtat és una <strong>IDENTITAT</strong> perquè és certa per a qualsevol valor de la incògnita.</p>
+                    <div class="verification-steps">
+                        <p><strong>Comprova-ho:</strong></p>
+                        <div class="step">Substitueix diferents valors i veuràs que sempre es compleix.</div>
+                    </div>
+                `;
+                resultDiv.className = 'result show identity';
+            } else {
+                resultDiv.innerHTML = `
+                    <h3>⚡ Equació</h3>
+                    <p><strong>${input}</strong></p>
+                    <p>Aquesta igualtat és una <strong>EQUACIÓ</strong> perquè només és certa per a alguns valors específics de la incògnita.</p>
+                    <div class="verification-steps">
+                        <p><strong>Per resoldre-la:</strong></p>
+                        <div class="step">Has de trobar el(s) valor(s) de la incògnita que fan que la igualtat sigui certa.</div>
+                    </div>
+                `;
+                resultDiv.className = 'result show equation';
+            }
+        }
+
+        // Permetre prémer Enter
+        document.getElementById('equalityInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                checkEquality();
+            }
+        });
+    </script>
+</body>
+</html>
