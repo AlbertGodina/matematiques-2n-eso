@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equacions - Matemàtiques 2n ESO</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            color: white;
+            margin-bottom: 50px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .back-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            margin-bottom: 30px;
+            transition: background 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .back-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .intro-section {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin-bottom: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        .intro-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .intro-section p {
+            color: #555;
+            line-height: 1.8;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            animation: slideUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+            background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%);
+        }
+
+        .topic-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 50px;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .topic-title {
+            font-size: 1.6em;
+            color: #667eea;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .topic-description {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .topic-keywords {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .keyword {
+            background: #f0f4ff;
+            color: #667eea;
+            padding: 6px 14px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .arrow {
+            float: right;
+            font-size: 1.5em;
+            color: #764ba2;
+            transition: transform 0.3s;
+        }
+
+        .topic-card:hover .arrow {
+            transform: translateX(5px);
+        }
+
+        footer {
+            text-align: center;
+            color: white;
+            margin-top: 60px;
+            opacity: 0.9;
+            font-size: 1em;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .topics-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-button">← Tornar a l'índex</a>
+
+        <header>
+            <h1>🔢 Equacions</h1>
+            <p class="subtitle">Aprèn a resoldre equacions de manera sistemàtica</p>
+        </header>
+
+        <div class="intro-section">
+            <h2>📖 Què són les equacions?</h2>
+            <p>
+                Una <strong>equació</strong> és una igualtat algebraica en què apareix una o més incògnites (normalment representades per lletres com x, y, z...). 
+                Resoldre una equació significa trobar els valors de les incògnites que fan que la igualtat sigui certa.
+            </p>
+            <p>
+                Les equacions són eines fonamentals en matemàtiques i ens permeten resoldre problemes reals de la vida quotidiana, 
+                com calcular distàncies, preus, edats, i moltes altres situacions pràctiques.
+            </p>
+        </div>
+
+        <div class="topics-grid">
+            <a href="equacions/igualtat_algebraiques.html" class="topic-card">
+                <span class="topic-number">1</span>
+                <h3 class="topic-title">Igualtats Algebraiques <span class="arrow">→</span></h3>
+                <p class="topic-description">
+                    Descobreix què són les igualtats algebraiques i les seves propietats fonamentals. 
+                    Aprèn a distingir entre identitats i equacions.
+                </p>
+                <div class="topic-keywords">
+                    <span class="keyword">Propietats</span>
+                    <span class="keyword">Identitats</span>
+                    <span class="keyword">Transformacions</span>
+                </div>
+            </a>
+
+            <a href="equacions/elements_equacio.html" class="topic-card">
+                <span class="topic-number">2</span>
+                <h3 class="topic-title">Elements d'una Equació <span class="arrow">→</span></h3>
+                <p class="topic-description">
+                    Identifica els components bàsics d'una equació: membres, termes, incògnites, coeficients i grau. 
+                    Entén què significa resoldre una equació.
+                </p>
+                <div class="topic-keywords">
+                    <span class="keyword">Membres</span>
+                    <span class="keyword">Incògnites</span>
+                    <span class="keyword">Grau</span>
+                    <span class="keyword">Solucions</span>
+                </div>
+            </a>
+
+            <a href="equacions/primer_grau.html" class="topic-card">
+                <span class="topic-number">3</span>
+                <h3 class="topic-title">Equacions de Primer Grau <span class="arrow">→</span></h3>
+                <p class="topic-description">
+                    Aprèn a resoldre equacions lineals pas a pas. Practica amb la calculadora interactiva 
+                    i domina les tècniques de resolució.
+                </p>
+                <div class="topic-keywords">
+                    <span class="keyword">ax + b = c</span>
+                    <span class="keyword">Transposició</span>
+                    <span class="keyword">Simplificació</span>
+                </div>
+            </a>
+
+            <a href="equacions/segon_grau_completes.html" class="topic-card">
+                <span class="topic-number">4</span>
+                <h3 class="topic-title">Equacions de Segon Grau Completes <span class="arrow">→</span></h3>
+                <p class="topic-description">
+                    Utilitza la fórmula general per resoldre equacions quadràtiques completes. 
+                    Entén el discriminant i els tipus de solucions.
+                </p>
+                <div class="topic-keywords">
+                    <span class="keyword">ax² + bx + c = 0</span>
+                    <span class="keyword">Discriminant</span>
+                    <span class="keyword">Fórmula general</span>
+                </div>
+            </a>
+
+            <a href="equacions/segon_grau_incompletes.html" class="topic-card">
+                <span class="topic-number">5</span>
+                <h3 class="topic-title">Equacions de Segon Grau Incompletes <span class="arrow">→</span></h3>
+                <p class="topic-description">
+                    Resol equacions quadràtiques incompletes amb mètodes específics més ràpids que la fórmula general. 
+                    Descobreix els tres casos principals.
+                </p>
+                <div class="topic-keywords">
+                    <span class="keyword">ax² = 0</span>
+                    <span class="keyword">ax² + c = 0</span>
+                    <span class="keyword">ax² + bx = 0</span>
+                </div>
+            </a>
+
+            <a href="equacions/problemes.html" class="topic-card">
+                <span class="topic-number">6</span>
+                <h3 class="topic-title">Resolució de Problemes <span class="arrow">→</span></h3>
+                <p class="topic-description">
+                    Aplica les equacions a problemes reals. Aprèn a plantejar equacions a partir d'enunciats 
+                    i a interpretar les solucions.
+                </p>
+                <div class="topic-keywords">
+                    <span class="keyword">Problemes d'edats</span>
+                    <span class="keyword">Distàncies</span>
+                    <span class="keyword">Nombres</span>
+                    <span class="keyword">Aplicacions</span>
+                </div>
+            </a>
+        </div>
+
+        <footer>
+            <p>© 2024 Matemàtiques 2n ESO | Equacions</p>
+        </footer>
+    </div>
+
+    <script>
+        // Afegir animació escalonada a les targetes
+        const cards = document.querySelectorAll('.topic-card');
+        cards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+    </script>
+</body>
+</html>
