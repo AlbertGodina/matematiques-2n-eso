@@ -18,7 +18,7 @@ Els recursos interactius cobreixen les següents àrees, amb els enllaços direc
 
 ## 💻 Tecnologia i Desenvolupament
 
-Aquests exercicis són generats utilitzant principalment **HTML, CSS i JavaScript** vanilla (sense frameworks pesants), el que garanteix la màxima velocitat i compatibilitat amb qualsevol navegador modern.
+Aquests exercicis són generats utilitzant principalment **HTML** el que garanteix la màxima velocitat i compatibilitat amb qualsevol navegador modern.
 
 ### Com utilitzar el codi localment:
 
